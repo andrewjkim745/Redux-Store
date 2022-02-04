@@ -11,7 +11,8 @@ export default function Games() {
 
 
     const fetchGames = async () => {
-        await fetch('https://id.twitch.tv/oauth2/token?client_id=q3lgkkz9q9vcl8wva8h3nrnxjsp8kk&client_secret=o6djya7f2hlo7c7pwipp5cgycskdzf&grant_type=client_credentials', 
+        
+        await fetch(`https://id.twitch.tv/oauth2/token?client_id=${process.env.REACT_APP_API_KEY}&client_secret=${process.env.REACT_APP_Client_Secret}&grant_type=client_credentials`, 
         {
             method: 'POST',
             headers: {
