@@ -10,7 +10,7 @@ export default function Card({src, title}) {
           <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
         </a>
       </MDBRipple>
-      <MDBCardBody>
+      <MDBCardBody style ={{ width: 200, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
         <MDBCardTitle>{title}</MDBCardTitle>
         <MDBBtn href='#'>Button</MDBBtn>
       </MDBCardBody>

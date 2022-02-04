@@ -9,7 +9,7 @@ import {
   MDBBadge
 } from 'mdb-react-ui-kit';
 
-export default function App() {
+export default function Navbar() {
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>

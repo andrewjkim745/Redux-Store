@@ -61,18 +61,22 @@ export default function Games() {
     return (
 
         <>
-        <div class='d-flex flex-column align-items-center'>
+        <div class='d-flex flex-column align-items-center mt-5'>
+        <div class="container">
+            <div class='row'>
             {games.map(game => {
+                
                 return (
-                    <>
+                    <div class='col'>
                     <Card
                     src={game.box_art_url}
                     title={game.name}
-                    /></>
-                    
+                    />
+                    </div>
                 )
             })}
-           
+            </div>
+           </div>
         </div>
         </>
     )
