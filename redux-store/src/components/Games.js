@@ -11,9 +11,20 @@ export default function Games() {
 
 
     const fetchGames = async () => {
-        const result = await api.get('https://api.twitch.tv/helix/games')
-        console.log(result.data)
-        
+        await fetch('https://id.twitch.tv/oauth2/token?client_id=q3lgkkz9q9vcl8wva8h3nrnxjsp8kk&client_secret=o6djya7f2hlo7c7pwipp5cgycskdzf&grant_type=client_credentials', 
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success', data)
+        })
+        .catch((error) => {
+            console.error('Error', error);
+        })
     }
 
     useEffect(() => {
