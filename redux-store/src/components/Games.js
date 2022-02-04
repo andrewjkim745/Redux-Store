@@ -7,10 +7,10 @@ import Card from './Card'
 export default function Games() {
 
 
-    const [ games, setGames ] = useState();
+    const [ games, setGames ] = useState('');
+    const [ token, setToken ] = useState('')
 
-
-    const fetchGames = async () => {
+    const getAuthToken = async () => {
         
         await fetch(`https://id.twitch.tv/oauth2/token?client_id=${process.env.REACT_APP_API_KEY}&client_secret=${process.env.REACT_APP_Client_Secret}&grant_type=client_credentials`, 
         {
@@ -22,6 +22,30 @@ export default function Games() {
         .then(response => response.json())
         .then(data => {
             console.log('Success', data)
+            setToken(data.access_token)
+        })
+        .catch((error) => {
+            console.error('Error', error);
+        })
+        
+    }
+
+
+    const getTopGames = async () => {
+
+        await fetch('https://api.twitch.tv/helix/games/top', 
+        {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Client-Id' : process.env.REACT_APP_API_KEY
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Got Top Games', data)
+            setGames(data)
+            
         })
         .catch((error) => {
             console.error('Error', error);
@@ -29,7 +53,8 @@ export default function Games() {
     }
 
     useEffect(() => {
-        fetchGames()
+        getAuthToken()
+        getTopGames()
     },[])
 
 
